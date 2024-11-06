@@ -7,7 +7,6 @@ const mongodb = require('mongodb');
 require('dotenv').config();
 
 const uri = "mongodb+srv://ujwalb29:Doodlearmy_2@cluster0.ne3wrkv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const serviceAccount = require('C:/Users/ujwal/Desktop/spotify-user-data-firebase.json');
 
 const client = new mongodb.MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect();
