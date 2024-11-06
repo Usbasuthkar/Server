@@ -6,7 +6,7 @@ const admin = require('firebase-admin');
 const mongodb = require('mongodb');
 
 const uri = "mongodb+srv://ujwalb29:Doodlearmy_2@cluster0.ne3wrkv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const serviceAccount = require('spotify-user-data-firebase.json');
+const serviceAccount = require('./spotify-user-data-firebase.json');
 
 const client = new mongodb.MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect();
