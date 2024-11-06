@@ -4,9 +4,10 @@ const { createServer } = require('node:http');
 const cors = require('cors');
 const admin = require('firebase-admin');
 const mongodb = require('mongodb');
+require('dotenv').config();
 
 const uri = "mongodb+srv://ujwalb29:Doodlearmy_2@cluster0.ne3wrkv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const serviceAccount = require('./spotify-user-data-firebase.json');
+const serviceAccount = require('C:/Users/ujwal/Desktop/spotify-user-data-firebase.json');
 
 const client = new mongodb.MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect();
@@ -15,7 +16,22 @@ const database = client.db('Spotify_users');
 const collection = database.collection("spotify_data");
 
 admin.initializeApp({
-    credential:admin.credential.cert(serviceAccount),
+    credential:admin.credential.cert(
+        {
+            "type": process.env.TYPE,
+            "project_id": process.env.PROJECT_ID,
+            "private_key_id": process.env.PRIVATE_KEY_ID,
+            "private_key": process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+            "client_email":process.env.CLIENT_EMAIL,
+            "client_id": process.env.CLIENT_ID,
+            "auth_uri": process.env.AUTH_URI,
+            "token_uri": process.env.TOKEN_URI,
+            "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL,
+            "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL,
+            "universe_domain": process.env.UNIVERSE_DOMAIN
+          }
+          
+    ),
     databaseURL : "https://spotify-user-data-default-rtdb.asia-southeast1.firebasedatabase.app/"
 });
 const db = admin.database();
