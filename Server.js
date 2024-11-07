@@ -59,7 +59,7 @@ app.post('/selected_users', async (req, res) => {
     try {
         const { username, Selected_users } = req.body;
         const filter = { Username: username.Username };
-        const update = { $push: { Selectedusers: { $each: Selected_users } } }; // Handle multiple usernames
+        const update = { $push: { Selectedusers: Selected_users } }; // Handle multiple usernames
         await collection.updateOne(filter, update);
         res.status(200).send("Users added successfully");
     } catch (error) {
