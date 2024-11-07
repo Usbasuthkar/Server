@@ -28,7 +28,7 @@ app.post('/delete_users', async (req, res) => {
         const { username, Selected_users } = req.body;
         console.log(Selected_users);
         const filter = { Username: username.Username };
-        const update = { $pull: { Selectedusers: { $in: Selected_users } } }; // Use $in to ensure multiple selections are handled
+        const update = { $pull: { Selectedusers: Selected_users } }; // Use $in to ensure multiple selections are handled
         const result = await collection.updateOne(filter, update);
         res.status(200).send("Users deleted successfully");
     } catch (error) {
