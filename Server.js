@@ -36,10 +36,7 @@ admin.initializeApp({
 const db = admin.database();
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}));
+app.use(cors);
 const server = createServer(app);
 app.post('/delete_users',async (req,res)=>{
     try {
