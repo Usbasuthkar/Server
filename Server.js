@@ -150,7 +150,10 @@ app.post('/store_messages', async (req, res) => {
 app.post('/retrieve_messages', async (req, res) => {
     const { username } = req.body;
     const result = await collection.findOne({ Username: username });
-    res.status(200).send(result.Messages);
+    if(result)
+        res.status(200).send(result.Messages);
+    else
+        res.status(200).send("Error !!!");
 });
 
 // Set up the HTTP server and WebSocket server
